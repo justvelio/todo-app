@@ -10,6 +10,7 @@ export default function AddTask() {
 
   const handleSubmitTodo: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+    setTaskValue('');
   };
 
   return (
@@ -29,7 +30,7 @@ export default function AddTask() {
               onChange={(e) => setTaskValue(e.target.value)}
               type="text"
               placeholder="Type here"
-              className="input w-full max-w-xs  border-gray-700"
+              className="input w-full max-w-xl  border-gray-700"
             />
             <button className="btn bg-black" type="submit">
               Submit
