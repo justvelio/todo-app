@@ -1,40 +1,16 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "text": "make sandwich rrrr"
-    },
-    {
-      "id": "2",
+      "id": "1f0c2f9f-899a-4a5f-946f-42024ed36dcd",
       "text": "make bed"
     },
     {
-      "id": "3",
-      "text": "learn 434"
+      "id": "91717f89-52ee-4dd0-9801-df184d5074fb",
+      "text": "make sandwich"
     },
     {
-      "id": "3",
-      "text": "fgfgf"
-    },
-    {
-      "id": "3",
-      "text": "go gym"
-    },
-    {
-      "id": "3",
-      "text": "frfrfr"
-    },
-    {
-      "id": "3",
-      "text": "learn"
-    },
-    {
-      "id": "3",
-      "text": "erere"
-    },
-    {
-      "id": "dfc8",
-      "text": "43434"
+      "id": "cd6fff0a-023c-41a4-90fa-aa238ff6d71f",
+      "text": "make a very long task to test if the app is responsive"
     }
   ]
 }

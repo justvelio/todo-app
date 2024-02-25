@@ -5,7 +5,7 @@ import { FormEventHandler, useState } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import TaskModal from "./TaskModal";
 import { useRouter } from "next/navigation";
-import { editTodo } from "@/api";
+import { deleteTodo, editTodo } from "@/api";
 
 interface TaskProps {
   task: ITask;
@@ -16,7 +16,6 @@ const Task: React.FC<TaskProps> = ({ task }) => {
     const [openModalEdit, setOpenModalEdit] = useState<boolean>(false)
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false)
     const [taskToEdit, setTaskToEdit] = useState<string>(task.text)
-    const [taskToDelete, setTaskToDelete] = useState(task.id)
 
     const handleSubmitEditTodo: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
@@ -24,12 +23,15 @@ const Task: React.FC<TaskProps> = ({ task }) => {
           id: task.id,
           text: taskToEdit,
         });
-        setTaskToEdit("");
         setOpenModalEdit(false);
         router.refresh();
       };
 
-    const handleSubmitDeleteTodo = () => {}
+    const handleDeleteTask = async (id: string) => {
+        await deleteTodo(id);
+        setOpenModalDelete(false);
+        router.refresh();
+    }
 
   return (
     <tr className="hover" key={task.id}>
@@ -53,8 +55,16 @@ const Task: React.FC<TaskProps> = ({ task }) => {
           </div>
         </form>
       </TaskModal>
-        <FiTrash2 cursor={'pointer'} className="text-red-500" size={17}/>
+        <FiTrash2 onClick={() => setOpenModalDelete(true)} cursor={'pointer'} className="text-red-500" size={17}/>
+        <TaskModal modalOpen={openModalDelete} setModalOpen={setOpenModalDelete}>
+            <h3 className="text-xl font-bold">Are you sure you want to delete this task?</h3>
+            <div className="modal-action">
+                <button onClick={() => handleDeleteTask(task.id)} className='btn bg-red-500'>Yes</button>
+                <button className="btn" onClick={() => setOpenModalDelete(false)}>No</button>
+                
+            </div>
         
+      </TaskModal>
       </td>
     </tr>
   );
