@@ -3,14 +3,24 @@
 import { AiOutlinePlus } from "react-icons/ai";
 import TaskModal from "./TaskModal";
 import { FormEventHandler, useState } from "react";
+import { addTodo } from "@/api";
+import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function AddTask() {
+  const router = useRouter();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [taskValue, setTaskValue] = useState<string>("");
 
-  const handleSubmitTodo: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmitTodo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    setTaskValue('');
+    await addTodo({
+      id: uuidv4,
+      text: taskValue,
+    });
+    setTaskValue("");
+    setModalOpen(false);
+    router.refresh();
   };
 
   return (
