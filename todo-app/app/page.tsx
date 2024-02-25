@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main>
-      <h1>zdr</h1>
+      <h1 className="text-center">TODO App</h1>
     </main>
   )
 }
