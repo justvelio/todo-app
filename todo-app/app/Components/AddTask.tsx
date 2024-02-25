@@ -15,7 +15,7 @@ export default function AddTask() {
   const handleSubmitTodo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     await addTodo({
-      id: uuidv4,
+      id: uuidv4(),
       text: taskValue,
     });
     setTaskValue("");
